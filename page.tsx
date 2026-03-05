@@ -1,6 +1,17 @@
 import { useState } from "react";
 
-const dsData = {
+type Method = { sig: string; note: string };
+type Pattern = { title: string; code: string };
+type Data = {
+  color: string;
+  icon: string;
+  desc: string;
+  init: string;
+  methods: Method[];
+  patterns: Pattern[];
+};
+
+const dsData: Record<string, Data> = {
   "Array / ArrayList": {
     color: "#00d4ff",
     icon: "▦",

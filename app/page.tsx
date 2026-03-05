@@ -116,7 +116,6 @@ export default function HomePage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '12px',
-                    transitionAll: 'all 0.2s',
                     textAlign: 'left',
                     fontFamily: 'inherit',
                   }}

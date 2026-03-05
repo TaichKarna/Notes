@@ -1,7 +1,18 @@
 'use client';
 import { useState } from "react";
 
-const dsData = {
+type Method = { sig: string; note: string };
+type Pattern = { title: string; code: string };
+type Data = {
+  color: string;
+  icon: string;
+  desc: string;
+  init: string;
+  methods: Method[];
+  patterns: Pattern[];
+};
+
+const dsData: Record<string, Data> = {
   "Array / ArrayList": {
     color: "#00d4ff",
     icon: "▦",
@@ -535,8 +546,10 @@ for (int i = 1; i < n; i++)
 const categories = Object.keys(dsData);
 
 export default function JavaDSAGuide() {
-  const [active, setActive] = useState(categories[0]);
-  const [tab, setTab] = useState("methods");
+  const [active, setActive] = useState<string>(categories[0] as string);
+  const TABS = ["methods", "patterns"] as const;
+  type Tab = typeof TABS[number];
+  const [tab, setTab] = useState<Tab>("methods");
   const ds = dsData[active];
 
   return (
@@ -648,7 +661,7 @@ export default function JavaDSAGuide() {
 
           {/* Tabs */}
           <div style={{ display: "flex", gap: 0, marginBottom: 16, borderBottom: "1px solid #e5e7eb" }}>
-            {["methods", "patterns"].map(t => (
+            {TABS.map(t => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
